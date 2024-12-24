@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { Task } from './entities/task.entity';
-import { TaskDto } from '../interface/task.dto';
+import { TaskBody } from '../interface/task.dto';
 @Controller('tasks')
 export class TasksController {
   constructor(private readonly tasksService: TasksService) {}
@@ -25,12 +25,12 @@ export class TasksController {
   }
 
   @Post()
-  create(@Body() task: TaskDto): Promise<Task> {
+  create(@Body() task: TaskBody): Promise<Task> {
     return this.tasksService.create(task);
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() task: Task): Promise<Task> {
+  update(@Param('id') id: string, @Body() task: TaskBody): Promise<Task> {
     return this.tasksService.update(id, task);
   }
 
